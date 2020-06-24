@@ -5,6 +5,11 @@
  */
 
 require('./bootstrap');
+import {library} from "@fortawesome/fontawesome-svg-core";
+import {faBiking} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+
+library.add(faBiking);
 
 window.Vue = require('vue');
 
@@ -16,6 +21,7 @@ import {routes} from './routes';
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 /**
  * The following block of code may be used to automatically register your
