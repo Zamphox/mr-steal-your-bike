@@ -28,6 +28,7 @@
 
 <script>
     import {required, maxLength} from 'vuelidate/lib/validators';
+    import {displayRequestErrorMessage} from "../../helpers";
 
     export default {
         data() {
@@ -40,9 +41,29 @@
             }
         },
         methods: {
-            submit(){
+            async submit(){
                 this.$v.form.$touch();
                 if (this.$v.form.$pending || this.$v.form.$error) return;
+                await this.postCaseReport().then((response) => {
+                    if(response){
+
+                    }
+                });
+            },
+            async postCaseReport() {
+                var vm = this;
+                var postResponse = null;
+                await axios.post(`api/case/report`, {
+                    full_name: vm.form.fullName,
+                    contact_info: vm.form.contactInfo,
+                    case_report: vm.form.caseReport
+                }).then((response) => {
+                    postResponse = response.data;
+                }).catch((data) => {
+                    displayRequestErrorMessage(data.response);
+                });
+
+                return postResponse;
             }
         },
         validations() {

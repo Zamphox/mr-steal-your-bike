@@ -18,14 +18,17 @@ import VueRouter from 'vue-router';
 import VueAxios from 'vue-axios';
 import axios from 'axios';
 import vuetify from "./plugins/vuetify/index";
-
-import {routes} from './routes';
-import './plugins/validation';
+import Notifications from "vue-notification";
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
+Vue.use(Notifications);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+import {routes} from './routes';
+import './helpers'
+import './plugins/validation';
 
 
 /**

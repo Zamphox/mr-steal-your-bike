@@ -12,6 +12,7 @@
             <br/>
             <div class="app-body">
                 <router-view></router-view>
+                <notifications></notifications>
             </div>
         </div>
     </v-app>
