@@ -6,10 +6,10 @@
 
 require('./bootstrap');
 import {library} from "@fortawesome/fontawesome-svg-core";
-import {faBiking} from "@fortawesome/free-solid-svg-icons";
+import {faBiking, faExclamationTriangle} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
-library.add(faBiking);
+library.add([faBiking, faExclamationTriangle]);
 
 window.Vue = require('vue');
 
@@ -17,11 +17,16 @@ import App from './components/App';
 import VueRouter from 'vue-router';
 import VueAxios from 'vue-axios';
 import axios from 'axios';
+import vuetify from "./plugins/vuetify/index";
+
 import {routes} from './routes';
+import './plugins/validation';
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
+
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -48,7 +53,8 @@ const router = new VueRouter({
 });
 
 const app = new Vue({
+    vuetify,
     el: '#app',
     router: router,
-    render: h => h(App),
+    render: h => h(App)
 });

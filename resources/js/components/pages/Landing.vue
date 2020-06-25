@@ -9,8 +9,8 @@
                 </span>
             </div>
             <div class="m-auto row w-75 mt-1">
-                <router-link to="/report-case" class="nav-item nav-link btn btn-danger col-5">I'd like to report a crime</router-link>
-                <router-link to="/report-case" class="nav-item nav-link btn btn-primary offset-2 col-5">I am an officer</router-link>
+                <v-btn to="/report-case" large class="deep-orange white--text landing-btn m-auto mt-2">I'd like to report a crime</v-btn>
+                <v-btn to="/report-case" large class="primary landing-btn m-auto mt-2">I am an officer</v-btn>
             </div>
         </div>
     </div>

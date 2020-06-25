@@ -9,7 +9,7 @@
 
 
 .app-container {
-    max-width: 900px;
+    max-width: 900px !important;
     min-height: 600px;
     height: 100vh;
     border: 1px solid lightgray;
@@ -22,6 +22,7 @@
     background-size: 561px 204px;
     background-repeat: no-repeat;
     background-color: white;
+    overflow: auto;
 
     .navbar {
         border-bottom: 2px solid #b8c8e07a;
@@ -65,12 +66,18 @@
     .app-body {
         .landing {
             padding: 0 5%;
+
+            .landing-btn {
+                min-width: 270px;
+            }
         }
+    }
+
+    .v-input__slot {
+        background-color: #fafafabf !important;
     }
 }
 
-.btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.v-btn:hover {
+    text-decoration: none;
 }
