@@ -19,12 +19,15 @@ import VueAxios from 'vue-axios';
 import axios from 'axios';
 import vuetify from "./plugins/vuetify/index";
 import Notifications from "vue-notification";
+import VModal from 'vue-js-modal'
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(Notifications);
+Vue.use(VModal);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component('v-modal', VModal);
 
 import {routes} from './routes';
 import './helpers'

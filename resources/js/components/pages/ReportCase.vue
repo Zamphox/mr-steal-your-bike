@@ -23,14 +23,17 @@
                 <v-btn type="submit" class="primary float-right">Submit</v-btn>
             </form>
         </form-wrapper>
+        <case-assigned></case-assigned>
     </div>
 </template>
 
 <script>
     import {required, maxLength} from 'vuelidate/lib/validators';
-    import {displayRequestErrorMessage} from "../../helpers";
+    import {displayRequestErrorMessage, MODAL_TYPES} from "../../helpers";
+    import CaseAssigned from "../modals/CaseAssigned";
 
     export default {
+        components: {CaseAssigned},
         data() {
             return {
                 form: {
@@ -42,11 +45,19 @@
         },
         methods: {
             async submit(){
+                this.$modal.show(MODAL_TYPES.CASE_ASSIGNED, {
+                    title: 'Your case was assigned to an officer!',
+                    email: 'email@m.com',
+                    name: 'Daver',
+                    surname: 'Surnamer'
+                });
                 this.$v.form.$touch();
                 if (this.$v.form.$pending || this.$v.form.$error) return;
                 await this.postCaseReport().then((response) => {
                     if(response){
-
+                        this.$modal.show(MODAL_TYPES.CASE_ASSIGNED, {
+                            title: 'Your case was assigned to an officer!',
+                        });
                     }
                 });
             },
