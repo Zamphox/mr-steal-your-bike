@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\CrimeCase;
 use App\Http\Services\CrimeCaseManagementService;
+use App\Officer;
 use Illuminate\Http\Request;
 
 class CasesController extends Controller
@@ -34,5 +36,23 @@ class CasesController extends Controller
         ]);
 
         return response()->json($this->caseService->createNewCrimeCase($data));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getOfficersList(Request $request){
+        return response()->json(
+            $this->caseService
+                ->getOfficersList($request->get('page', 1), $request->get('s')));
+    }
+
+    public function getOfficerCase(Officer $officer){
+        return response()->json($officer->load('case'));
+    }
+
+    public function closeCase(CrimeCase $case){
+        return$this->caseService->closeCase($case);
     }
 }

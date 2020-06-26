@@ -27,7 +27,6 @@
 
     export default {
         name: 'CaseAssigned',
-        props: ['title', 'officer'],
         data() {
             return {
                 MODAL_TYPES,

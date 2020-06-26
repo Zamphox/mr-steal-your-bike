@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\CrimeCase;
+use App\Officer;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +35,8 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+        Route::model('officer', Officer::class);
+        Route::model('crimeCase', CrimeCase::class);
     }
 
     /**

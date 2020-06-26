@@ -45,18 +45,15 @@
         },
         methods: {
             async submit(){
-                this.$modal.show(MODAL_TYPES.CASE_ASSIGNED, {
-                    title: 'Your case was assigned to an officer!',
-                    email: 'email@m.com',
-                    name: 'Daver',
-                    surname: 'Surnamer'
-                });
                 this.$v.form.$touch();
                 if (this.$v.form.$pending || this.$v.form.$error) return;
                 await this.postCaseReport().then((response) => {
                     if(response){
                         this.$modal.show(MODAL_TYPES.CASE_ASSIGNED, {
                             title: 'Your case was assigned to an officer!',
+                            email: response.email,
+                            name: response.name,
+                            surname: response.surname
                         });
                     }
                 });

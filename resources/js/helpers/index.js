@@ -5,5 +5,6 @@ export function displayRequestErrorMessage(response) {
 }
 
 export const MODAL_TYPES = {
-    CASE_ASSIGNED: 'CASE_ASSIGNED'
+    CASE_ASSIGNED: 'CASE_ASSIGNED',
+    OFFICER_STATUS: 'OFFICER_STATUS'
 };

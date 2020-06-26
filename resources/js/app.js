@@ -5,6 +5,8 @@
  */
 
 require('./bootstrap');
+require('lodash');
+
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {faBiking, faExclamationTriangle} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";

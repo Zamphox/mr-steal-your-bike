@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'case'], function () {
     Route::post('report', 'CasesController@create');
-    Route::post('close/{id}', 'CasesController@close');
+    Route::post('close/{crimeCase}', 'CasesController@closeCase');
 });
 
 Route::group(['prefix' => 'officers'], function () {
-    Route::get('status', 'CasesController@getOfficerCase');
+    Route::get('/', 'CasesController@getOfficersList');
+    Route::get('status/{officer}', 'CasesController@getOfficerCase');
 });

@@ -6,6 +6,7 @@ namespace App\Http\Services\CrimeCases;
 use App\CrimeCase;
 use App\Officer;
 use App\Http\Services\CrimeCaseManagementService as CrimeCaseManagementInterface;
+use Illuminate\Pagination\Paginator;
 
 class CrimeCaseManagementService implements CrimeCaseManagementInterface
 {
@@ -31,6 +32,16 @@ class CrimeCaseManagementService implements CrimeCaseManagementInterface
         return $officer;
     }
 
+    public function getOfficersList(int $page = 1, $searchQuery = ''){
+        $searchQuery = '%' . $searchQuery . '%';
+        Paginator::resolveCurrentPage($page);
+        $officers = Officer::where('name', 'LIKE', $searchQuery)
+            ->orWhere('surname', 'LIKE', $searchQuery)
+            ->orderBy('name')->paginate(15);
+
+        return $officers;
+    }
+
     /**
      * @return mixed
      * @throws \Exception
@@ -41,5 +52,13 @@ class CrimeCaseManagementService implements CrimeCaseManagementInterface
             throw new \Exception('No officers available');
         }
         return $officer;
+    }
+
+    public function closeCase(CrimeCase $case)
+    {
+        $officer = $case->officer;
+        $case->delete();
+        $officer->is_available = 1;
+        $officer->save();
     }
 }
